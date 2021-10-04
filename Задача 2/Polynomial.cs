@@ -8,14 +8,10 @@ namespace Задача_2
     {
         public List<PolynomialPart> parts { get; set; }
 
-        public Polynomial()
+        public Polynomial(string s)
         {
             parts = new List<PolynomialPart>();
-
-            parts.Add(new PolynomialPart(10, 0));
-            parts.Add(new PolynomialPart(1, 1));
-            parts.Add(new PolynomialPart(7, 2));
-            parts.Add(new PolynomialPart(5, 3));
+            Parse(s);
 
             parts.Sort((x, y) => x.PolynomRank.CompareTo(y.PolynomRank));
         }
@@ -113,7 +109,18 @@ namespace Задача_2
 
         public void Parse(string s)
         {
+            string[] parts = s.Split("+");
 
+            for(int i = 0; i < parts.Length; i++)
+            {
+                string[] numbers = parts[i].Split("x^");
+
+                int realPart = int.Parse(numbers[0]);
+                int polynomRank = int.Parse(numbers[1]);
+
+                PolynomialPart part = new PolynomialPart(realPart, polynomRank);
+                this.parts.Add(part);
+            }
         }
 
         public override string ToString()
