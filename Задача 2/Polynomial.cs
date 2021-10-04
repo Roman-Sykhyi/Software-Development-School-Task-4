@@ -143,8 +143,6 @@ namespace Задача_2
                 }
             }
 
-            //result += parts.Last().ToString();
-
             return result;
         }
     }
