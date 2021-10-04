@@ -12,6 +12,9 @@ namespace Задача_1
             Storage storage = new Storage();
             PrintProductsInfo(storage);
 
+            Console.Write("Введіть шлях до файлу в який буде збережено інформацію про молочні продукти у яких вийшов термін придатності: ");
+            storage.RemoveOutOfDateDairyProducts(Console.ReadLine());
+
             Console.ReadKey();
         }
        

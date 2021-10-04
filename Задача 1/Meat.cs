@@ -90,7 +90,10 @@ namespace Задача_1
                     break;
             }
 
-            return "Назва: " + Name + ". Ціна: " + Price + ". Вага: " + Weight + ". Сорт: " + gradeText + ". Вид м'яса: " + typeText;
+            string result = base.ToString();
+            result += ". Сорт: " + gradeText + ". Вид м'яса: " + typeText;
+            return result;
+            //return "Назва: " + Name + ". Ціна: " + Price + ". Вага: " + Weight + ". Сорт: " + gradeText + ". Вид м'яса: " + typeText + ". Термін придатності: " + ExpirationDate + " днів. Дата виготовлення: " + ManufactureDate.ToShortDateString();
         }
     }
 }

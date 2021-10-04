@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 
 namespace Задача_1
 {
@@ -12,8 +13,8 @@ namespace Задача_1
         public Storage()
         {
             products = new List<Product>();
-            FillStorageFromConsole();
-            //FillStorageByInitialization();
+            //FillStorageFromConsole();
+            FillStorageByInitialization();
         }
 
         public Product this[int index]
@@ -26,6 +27,26 @@ namespace Задача_1
             {
                 products[index] = value;
             }
+        }
+
+        public void RemoveOutOfDateDairyProducts(string path)
+        {
+            StreamWriter writer = new StreamWriter(path);
+
+            for(int i = products.Count - 1; i >= 0; i--)
+            {
+                if (products[i] is DairyProduct)
+                {
+                    DateTime date = products[i].ManufactureDate;
+                    date = date.AddDays(products[i].ExpirationDate);
+                    if (date.CompareTo(DateTime.Now) < 0)
+                    {
+                        writer.WriteLine(products[i].ToString());
+                        products.RemoveAt(i);
+                    }
+                }
+            }
+            writer.Close();
         }
 
         public void PrintProductsInfo()
@@ -86,7 +107,7 @@ namespace Задача_1
         {
             Product bread = new Product("Хліб", 10f, 0.3f, 5, DateTime.Now);
             Product meat = new Meat("Стейк", 300f, 1f, MeatGrade.Highest, MeatType.Veal, 11, DateTime.Now);
-            Product milk = new DairyProduct("Молоко", 28.5f, 1f, 7, DateTime.Now);
+            Product milk = new DairyProduct("Молоко", 28.5f, 1f, 2, DateTime.ParseExact("01.10.2021", "dd.MM.yyyy", CultureInfo.InvariantCulture));
 
             products.Add(milk);
             products.Add(meat);

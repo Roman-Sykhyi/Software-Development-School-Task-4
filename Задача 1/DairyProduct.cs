@@ -10,7 +10,7 @@ namespace Задача_1
 
         public override void RaisePrice(int percent)
         {
-            percent += expirationDate / 10;
+            percent += ExpirationDate / 10;
             base.RaisePrice(percent);
         }
 
@@ -27,7 +27,7 @@ namespace Задача_1
 
         public override string ToString()
         {
-            return "Назва: " + Name + ". Ціна: " + Price + ". Вага: " + Weight + ". Термін придатності: " + expirationDate + " днів.";
+            return base.ToString();
         }
     }
 }

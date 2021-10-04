@@ -9,8 +9,8 @@ namespace Задача_1
         public float Price { get; private set; }
         public float Weight { get; private set; }
 
-        private protected int expirationDate; // in days
-        private DateTime manufactureDate;
+        public int ExpirationDate { get; private set; } // in days
+        public DateTime ManufactureDate { get; private set; }
 
         public Product(string name, float price, float weight, int expirationDate, DateTime manufactureDate)
         {
@@ -32,8 +32,8 @@ namespace Задача_1
             Name = name;
             Price = price;
             Weight = weight;
-            this.expirationDate = expirationDate;
-            this.manufactureDate = manufactureDate;
+            this.ExpirationDate = expirationDate;
+            this.ManufactureDate = manufactureDate;
         }
 
         public virtual void RaisePrice(int percent)
@@ -58,7 +58,7 @@ namespace Задача_1
 
         public override string ToString()
         {
-            return "Назва: " + Name + ". Ціна: " + Price + ". Вага: " + Weight + ". Термін придатності: " + expirationDate + " днів. Дата виготовлення: " + manufactureDate.ToShortDateString();
+            return "Назва: " + Name + ". Ціна: " + Price + ". Вага: " + Weight + ". Термін придатності: " + ExpirationDate + " днів. Дата виготовлення: " + ManufactureDate.ToShortDateString();
         }
 
         public void Parse(string s)
@@ -71,8 +71,8 @@ namespace Задача_1
             Name = strings[0];
             Price = float.Parse(strings[1]);
             Weight = float.Parse(strings[2]);
-            expirationDate = int.Parse(strings[3]);
-            manufactureDate = DateTime.ParseExact(strings[4], "dd.MM.yyyy", CultureInfo.InvariantCulture);
+            ExpirationDate = int.Parse(strings[3]);
+            ManufactureDate = DateTime.ParseExact(strings[4], "dd.MM.yyyy", CultureInfo.InvariantCulture);
         }
     }
 }
